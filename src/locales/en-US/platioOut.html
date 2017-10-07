@@ -1,0 +1,66 @@
+<script type="text/x-red" data-help-name="platio out">
+  <p>Inserts, updates or deletes a record to a collection on Platio.</p>
+  <p>It inserts a new record when you don't specify <code>recordId</code>. It deletes a specified record when you specify <code>recordId</code> and set <code>delete</code> to <code>true</code>. It updates a specified record otherwise.</p>
+
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>payload
+      <span class="property-type">Object</span>
+    </dt>
+    <dd>
+      <p>Set values you want to insert or update in the format used with Platio API. See <a href="http://doc.plat.io/api/en/">Platio API Documents</a> for details.</p>
+      <p>Values not specified will be removed.</p>
+      <p>Example:</p>
+      <pre style="display:block">
+msg.payload = {
+  values: {
+    cxxxxxxx: {
+      type: 'Number',
+      value: 20
+    },
+    cyyyyyyy: {
+      type: 'String',
+      value: 'Text'
+    }
+  }
+};
+      </pre>
+    </dd>
+    <dt>platio
+      <span class="property-type">Object</span>
+    </dt>
+    <dd>
+      <p>A configuration object. Values in this object overwrite node configurations.</p>
+      <ul>
+        <li><code>applicationId</code>: String - An ID of an application</li>
+        <li><code>collectionId</code>: String - An ID of a collection</li>
+        <li><code>authorization</code>: String - An API token starting from `Bearer`</li>
+        <li><code>recordId</code>: String - An ID of a record to get</li>
+        <li><code>delete</code>: Boolean - `true` when you want to delete a record</li>
+      </ul>
+      <p>Example:</p>
+      <pre style="display:block">
+msg.platio = {
+  applicationId: 'pxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  collectionId: 'txxxxxxx',
+  authorization: 'Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    recordId: 'rxxxxxxxxxxxxxxxxxxxxxxxxxx'
+o}
+      </pre>
+    </dd>
+  </dl>
+
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>
+      payload
+      <span class="property-type">Object</span>
+    </dt>
+    <dd>
+      <p>This node returns an inserted or updated record object. It returns nothing when you delete a record.</p>
+    </dd>
+  </dl>
+
+  <h3>Details</h3>
+  <p>See <a href="http://doc.plat.io/api/en/">Platio API Documents</a> for details.</p>
+</script>

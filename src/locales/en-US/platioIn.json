@@ -1,0 +1,33 @@
+{
+  "platioIn": {
+    "label": {
+        "name": "Name",
+        "applicationId": "Application ID",
+        "collectionId": "Collection ID",
+        "recordId": "Record ID",
+        "limit": "Max number of records",
+        "sortKey": "Sort Key",
+        "sortOrder": "Sort Order",
+        "sortColumnId": "Sort Column ID",
+        "search": "Search Expression",
+        "timezone": "Time Zone",
+        "authorization": "Authorization Header"
+    },
+    "placeholder": {
+        "name": "Name",
+        "search": "Search Expression",
+        "timezone": "America/Los_Angeles"
+    },
+    "sortKey": {
+        "column": "Column",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "createdBy": "Created By",
+        "updatedBy": "Updated By"
+    },
+    "sortOrder": {
+        "ascending": "Ascending",
+        "descending": "Descending"
+    }
+  }
+}

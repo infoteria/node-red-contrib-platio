@@ -1,0 +1,54 @@
+<script type="text/x-red" data-help-name="platio in">
+  <p>Get records from a collection on Platio.</p>
+  <p>It gets a specified record when you specify <code>recordId</code>, and gets a list of records otherwise.</p>
+
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>platio
+      <span class="property-type">Object</span>
+    </dt>
+    <dd>
+      <p>A configuration object. Values in this object overwrite node configurations.</p>
+      <ul>
+        <li><code>applicationId</code>: String - An ID of an application</li>
+        <li><code>collectionId</code>: String - An ID of a collection</li>
+        <li><code>authorization</code>: String - An API token starting from `Bearer`</li>
+        <li><code>recordId</code>: String - An ID of a record to get</li>
+        <li><code>limit</code>: Number - The maximum number of records to get. It uses the default value if 0</li>
+        <li><code>sortKey</code>: String - Sort Key. One of <code>column</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>createdBy</code>, <code>updatedBy</code></li>
+        <li><code>sortOrder</code>: String - Sort Order. One of <code>ascending</code> or <code>descending</code></li>
+        <li><code>sortColumnId</code>: String - An ID of a column you want to sort records by. Relevant only when Sort Key is <code>column</code></li>
+        <li><code>search</code>: String - Search expression</li>
+        <li><code>timezone</code>: String - Time zone</li>
+      </ul>
+      <p>You cannot set <code>limit</code>, <code>sortKey</code>, <code>sortOrder</code>, <code>sortColumnId</code>, <code>search</code> and <code>timezone</code> when you specify <code>recordId</code>.</p>
+      <p>Example:</p>
+      <pre style="display:block">
+msg.platio = {
+  applicationId: 'pxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  collectionId: 'txxxxxxx',
+  authorization: 'Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  limit: 100,
+  sortKey: 'column',
+  sortOrder: 'ascending',
+  sortColumnId: 'cxxxxxxx',
+  search: 'ColumnName:Test',
+  timezone: 'Asia/Tokyo'
+}
+      </pre>
+    </dd>
+  </dl>
+
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>payload
+      <span class="property-type">Array | Object</span>
+    </dt>
+    <dd>
+      <p>This node returns a record object when you specify <code>recordId</code>, and an array of record objects otherwise.</p>
+    </dd>
+  </dl>
+
+  <h3>Details</h3>
+  <p>See <a href="http://doc.plat.io/api/en/">Platio API Documents</a> for details.</p>
+</script>

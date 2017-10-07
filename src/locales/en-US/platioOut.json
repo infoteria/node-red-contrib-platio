@@ -1,0 +1,15 @@
+{
+  "platioOut": {
+    "label": {
+        "name": "Name",
+        "applicationId": "Application ID",
+        "collectionId": "Collection ID",
+        "recordId": "Record ID",
+        "delete": "Delete",
+        "authorization": "Authorization Header"
+    },
+    "placeholder": {
+        "name": "Name"
+    }
+  }
+}

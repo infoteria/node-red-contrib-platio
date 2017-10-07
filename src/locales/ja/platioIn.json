@@ -1,0 +1,33 @@
+{
+  "platioIn": {
+    "label": {
+        "name": "名前",
+        "applicationId": "アプリケーションID",
+        "collectionId": "コレクションID",
+        "recordId": "レコードID",
+        "limit": "取得件数",
+        "sortKey": "ソートキー",
+        "sortOrder": "ソート順",
+        "sortColumnId": "ソートカラムID",
+        "search": "検索式",
+        "timezone": "タイムゾーン",
+        "authorization": "Authorizationヘッダー"
+    },
+    "placeholder": {
+        "name": "名前",
+        "search": "検索式",
+        "timezone": "Asia/Tokyo"
+    },
+    "sortKey": {
+        "column": "カラム",
+        "createdAt": "作成日時",
+        "updatedAt": "更新日時",
+        "createdBy": "作成者",
+        "updatedBy": "更新者"
+    },
+    "sortOrder": {
+        "ascending": "昇順",
+        "descending": "降順"
+    }
+  }
+}

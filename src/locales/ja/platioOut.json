@@ -1,0 +1,15 @@
+{
+  "platioOut": {
+    "label": {
+        "name": "名前",
+        "applicationId": "アプリケーションID",
+        "collectionId": "コレクションID",
+        "recordId": "レコードID",
+        "delete": "削除",
+        "authorization": "Authorizationヘッダー"
+    },
+    "placeholder": {
+        "name": "名前"
+    }
+  }
+}

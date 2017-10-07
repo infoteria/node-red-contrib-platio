@@ -1,0 +1,54 @@
+<script type="text/x-red" data-help-name="platio in">
+  <p>Platioのコレクションからレコードを取得します。</p>
+  <p><code>recordId</code>が指定されている場合にはそのレコードを取得し、指定されていない場合にはレコードのリストを取得します。</p>
+
+  <h3>入力</h3>
+  <dl class="message-properties">
+    <dt>platio
+      <span class="property-type">Object</span>
+    </dt>
+    <dd>
+      <p>設定用のオブジェクトです。設定値がある項目は、ノードの設定よりも優先して動作します。</p>
+      <ul>
+        <li><code>applicationId</code>: String - アプリケーションのID</li>
+        <li><code>collectionId</code>: String - コレクションのID</li>
+        <li><code>authorization</code>: String - `Bearer`から始まる認証用トークン</li>
+        <li><code>recordId</code>: String - 取得するレコードのID</li>
+        <li><code>limit</code>: Number - 取得するレコードの最大数。0の場合には、APIのデフォルトを使用します</li>
+        <li><code>sortKey</code>: String - ソートキー。<code>column</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>createdBy</code>, <code>updatedBy</code>のいずれか</li>
+        <li><code>sortOrder</code>: String - ソート順。<code>ascending</code>, <code>descending</code>のいずれか</li>
+        <li><code>sortColumnId</code>: String - ソートするカラムのID。ソートキーが<code>column</code>の場合のみ指定可能</li>
+        <li><code>search</code>: String - 検索式</li>
+        <li><code>timezone</code>: String - タイムゾーン</li>
+      </ul>
+      <p><code>recordId</code>を指定した場合、<code>limit</code>, <code>sortKey</code>, <code>sortOrder</code>, <code>sortColumnId</code>, <code>search</code>, <code>timezone</code>は指定できません。</p>
+      <p>設定例:</p>
+      <pre style="display:block">
+msg.platio = {
+  applicationId: 'pxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  collectionId: 'txxxxxxx',
+  authorization: 'Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  limit: 100,
+  sortKey: 'column',
+  sortOrder: 'ascending',
+  sortColumnId: 'cxxxxxxx',
+  search: 'ColumnName:Test',
+  timezone: 'Asia/Tokyo'
+}
+      </pre>
+    </dd>
+  </dl>
+
+  <h3>出力</h3>
+  <dl class="message-properties">
+    <dt>payload
+      <span class="property-type">Array | Object</span>
+    </dt>
+    <dd>
+      <p><code>recordId</code>を指定した場合にはレコードオブジェクトを、それ以外の場合にはレコードオブジェクトの配列を返します。</p>
+    </dd>
+  </dl>
+
+  <h3>詳細</h3>
+  <p>Platio APIについては、<a href="http://doc.plat.io/api/ja/">Platio API ドキュメント</a>をご確認ください。</p>
+</script>

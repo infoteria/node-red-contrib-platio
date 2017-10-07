@@ -1,0 +1,30 @@
+{
+  "name": "node-red-contrib-platio",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "lint": "jshint -c ../../.jshintrcServer src/*.js test/*.js && jscs -c ../../.jscsrc src/*.js test/*.js",
+    "test": "nyc --reporter html --reporter text mocha test/*.test.js",
+    "clean": "rm -rf coverage"
+  },
+  "node-red": {
+    "nodes": {
+      "platio in": "src/platioIn.js",
+      "platio out": "src/platioOut.js"
+    }
+  },
+  "dependencies": {
+    "lodash": "^4.17.2",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.5",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3",
+    "proxyquire": "^1.7.4",
+    "should": "^11.2.1",
+    "should-sinon": "0.0.5",
+    "sinon": "^2.3.4"
+  }
+}

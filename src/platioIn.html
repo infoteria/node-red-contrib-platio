@@ -1,0 +1,110 @@
+<script type="text/javascript">
+    RED.nodes.registerType('platio in', {
+        category: 'Platio',
+        color: '#a6bbcf',
+        defaults: {
+            name: {
+                value: ''
+            },
+            applicationId: {
+                value: '',
+                validate: RED.validators.regex(/^(?:p[a-z0-9]{26}|)$/)
+            },
+            collectionId: {
+                value: '',
+                validate: RED.validators.regex(/^(?:t[a-z0-9]{7}|)$/)
+            },
+            recordId: {
+                value: '',
+                validate: RED.validators.regex(/^(?:r[a-z0-9]{26}|)$/)
+            },
+            limit: {
+                value: 0,
+                validate: RED.validators.number()
+            },
+            sortKey: {
+                value: 'updatedAt'
+            },
+            sortOrder: {
+                value: 'descending'
+            },
+            sortColumnId: {
+                value: '',
+                validate: RED.validators.regex(/^(?:c[a-z0-9]{7}|)$/)
+            },
+            search: {
+                value: ''
+            },
+            timezone: {
+                value: ''
+            }
+        },
+        credentials: {
+            authorization: {
+                type: 'password'
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'platio.png',
+        label: function() {
+            return this.name || 'Platio';
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="platio in">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> <span data-i18n="platioIn.label.name"></label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-applicationId"><i class="icon-tag"></i> <span data-i18n="platioIn.label.applicationId"></label>
+        <input type="text" id="node-input-applicationId" placeholder="pxxxxxxxxxxxxxxxxxxxxxxxxxx">
+    </div>
+    <div class="form-row">
+        <label for="node-input-collectionId"><i class="icon-tag"></i> <span data-i18n="platioIn.label.collectionId"></label>
+        <input type="text" id="node-input-collectionId" placeholder="txxxxxxx">
+    </div>
+    <div class="form-row">
+        <label for="node-input-authorization"><i class="icon-tag"></i> <span data-i18n="platioIn.label.authorization"></label>
+        <input type="text" id="node-input-authorization" placeholder="Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+    </div>
+    <div class="form-row">
+        <label for="node-input-recordId"><i class="icon-tag"></i> <span data-i18n="platioIn.label.recordId"></label>
+        <input type="text" id="node-input-recordId" placeholder="rxxxxxxxxxxxxxxxxxxxxxxxxxx">
+    </div>
+    <div class="form-row">
+        <label for="node-input-limit"><i class="icon-tag"></i> <span data-i18n="platioIn.label.limit"></label>
+        <input type="number" id="node-input-limit" placeholder="100">
+    </div>
+    <div class="form-row">
+        <label for="node-input-sortKey"><i class="icon-tag"></i> <span data-i18n="platioIn.label.sortKey"></label>
+        <select id="node-input-sortKey">
+            <option value="column" data-i18n="platioIn.sortKey.column">
+            <option value="createdAt" data-i18n="platioIn.sortKey.createdAt">
+            <option value="updatedAt" data-i18n="platioIn.sortKey.updatedAt">
+            <option value="createdBy" data-i18n="platioIn.sortKey.createdBy">
+            <option value="updatedBy" data-i18n="platioIn.sortKey.updatedBy">
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-sortOrder"><i class="icon-tag"></i> <span data-i18n="platioIn.label.sortOrder"></label>
+        <select id="node-input-sortOrder">
+            <option value="ascending" data-i18n="platioIn.sortOrder.ascending">
+            <option value="descending" data-i18n="platioIn.sortOrder.descending">
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-sortColumnId"><i class="icon-tag"></i> <span data-i18n="platioIn.label.sortColumnId"></label>
+        <input type="text" id="node-input-sortColumnId" placeholder="cxxxxxxx">
+    </div>
+    <div class="form-row">
+        <label for="node-input-search"><i class="icon-tag"></i> <span data-i18n="platioIn.label.search"></label>
+        <input type="text" id="node-input-search" data-i18n="[placeholder]platioIn.placeholder.search">
+    </div>
+    <div class="form-row">
+        <label for="node-input-timezone"><i class="icon-tag"></i> <span data-i18n="platioIn.label.timezone"></label>
+        <input type="text" id="node-input-timezone" data-i18n="[placeholder]platioIn.placeholder.timezone">
+    </div>
+</script>
