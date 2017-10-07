@@ -118,4 +118,4 @@ msg.payload = {
 
 ## Using Platio Node in OpenBlocks
 
-You cannot use Platio Node in Node-RED on OpenBlocks because the version of node.js is too old. Please use node-red-contrib-platio-openblocks package on OpenBlocks.
+You cannot use this Platio Node in Node-RED on OpenBlocks because the version of node.js is too old. Please use node-red-contrib-platio-openblocks package on OpenBlocks.
