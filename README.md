@@ -1,11 +1,17 @@
-# Platio Node for Node-RED
+Platio Node for Node-RED
+========================
 
-This node allows you to create, get, update and delete records your Plate on [Platio](https://plat.io/).
+This node allows you to create, get, update and delete records in your Plate on [Platio](https://plat.io/).
 
 This node communicates with Platio using Platio API, so you need to know some basics about it. Please read [Platio API Documents](http://doc.plat.io/api/en/) about Platio API.
 
+##### OpenBlocks
 
-## Prepare your Plate and Platio API
+Try [node-red-contrib-platio-openblocks](https://github.com/infoteria/node-red-contrib-platio-openblocks) package to use Platio Node for Node-RED on a platform using old node.js like OpenBlocks.
+
+
+Prepare your Plate and Platio API
+---------------------------------
 
 1. Create your Plate on Platio Studio.
 2. Add a user to your Plate. Don't forget to check [Allow API access to records and attachments].
@@ -13,20 +19,21 @@ This node communicates with Platio using Platio API, so you need to know some ba
 4. Go to the Developer page and check necessary information.
 
 
-## Common configurations
+Common configurations
+---------------------
 
 ### Node configurations
 
 On each node, you can set an application and a collection you're going to use from Node-RED UI.
 
 <dl>
-  <dt>Name (`name`)</dt>
+  <dt>Name (<code>name</code>)</dt>
   <dd>A name of the Node.</dd>
-  <dt>Application ID (`applicationId`)</dt>
+  <dt>Application ID (<code>applicationId</code>)</dt>
   <dd>An ID of an application (Plate).</dd>
-  <dt>Collection ID (`collectionId`)</dt>
+  <dt>Collection ID (<code>collectionId</code>)</dt>
   <dd>An ID of a collection.</dd>
-  <dt>Authorization Header (`authorization`)</dt>
+  <dt>Authorization Header (<code>authorization</code>)</dt>
   <dd>Set your authorization token for Platio API. Go to the Developer page in Platio Data Console and generate an API token. Then, paste a token at [Authorization Header].</dd>
 </dl>
 
@@ -43,34 +50,36 @@ msg.platio = {
 ```
 
 
-## Error handling
+Error handling
+--------------
 
 When an error occurs, Platio Node reports it to Node-RED as an error. You can handle errors using catch Node.
 
 
-## Nodes
+Nodes
+-----
 
-## platio in
+### platio in
 
 Using platio in node, you can get a specified record, or records that matches your search criteria.
 
 In addition to the common configurations, you can configure these properties.
 
 <dl>
-  <dt>Record ID (`recordId`)</dt>
+  <dt>Record ID (<code>recordId</code>)</dt>
   <dd>An ID of a record to get.</dd>
-  <dt>Limit (`limit`)</dt>
+  <dt>Limit (<code>limit</code>)</dt>
   <dd>The maximum number of records to get.</dd>
-  <dt>Sort Key (`sortKey`)</dt>
-  <dd>Sort Key. One of `column`, `createdAt`, `updatedAt`, `createdBy`, `updatedBy`.</dd>
-  <dt>Sort Order (`sortOrder`)</dt>
-  <dd>Sort Order. `ascending` or `descending`.</dd>
-  <dt>Sort Column ID (`sortColumnId`)</dt>
-  <dd>An ID of a column you want to sort records by. You can specify this only when Sort Key is `column`.</dd>
-  <dt>Search Expression (`search`)</dt>
-  <dd>An expression to search records. See [Record Query Syntax](http://doc.plat.io/api/en/search.html) for details.</dd>
-  <dt>Time Zone (`timezone`)</dt>
-  <dd>Time Zone used when searching records, like `America/Los_Angeles`.</dd>
+  <dt>Sort Key (<code>sortKey</code>)</dt>
+  <dd>Sort Key. One of <code>column</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>createdBy</code>, <code>updatedBy</code>.</dd>
+  <dt>Sort Order (<code>sortOrder</code>)</dt>
+  <dd>Sort Order. <code>ascending</code> or <code>descending</code>.</dd>
+  <dt>Sort Column ID (<code>sortColumnId</code>)</dt>
+  <dd>An ID of a column you want to sort records by. You can specify this only when Sort Key is <code>column</code>.</dd>
+  <dt>Search Expression (<code>search</code>)</dt>
+  <dd>An expression to search records. See <a href="http://doc.plat.io/api/en/search.html">Record Query Syntax</a> for details.</dd>
+  <dt>Time Zone (<code>timezone</code>)</dt>
+  <dd>Time Zone used when searching records, like <code>America/Los_Angeles</code>.</dd>
 </dl>
 
 This node retrieves a specified record and set it to `msg.payload` when you set Record ID. See [Platio API Documents](https://doc.plat.io/en/) for details about the record format.
@@ -79,17 +88,17 @@ It retrieves an array of records if you don't specify Record ID and set it to `m
 
 When you set Limit, it retrieves records up to the number specified. It calls API multiple times when you set a value greater than the limit of API (100).
 
-## platio out
+### platio out
 
 Using platio out node, you can create a new record, update and delete an existing record.
 
 In addition to the common configurations, you can configure these properties.
 
 <dl>
-  <dt>Record ID (`recordId`)</dt>
+  <dt>Record ID (<code>recordId</code>)</dt>
   <dd>An ID of a record to update or delete.</dd>
-  <dt>Delete (`delete`)</dt>
-  <dd>`true` to delete a specified record. `false` otherwise.</dd>
+  <dt>Delete (<code>delete</code>)</dt>
+  <dd><code>true</code> to delete a specified record. <code>false</code> otherwise.</dd>
 </dl>
 
 This node creates a new record with values specified in `msg.payload` when you don't specify Record ID.
@@ -114,8 +123,3 @@ msg.payload = {
   }
 };
 ```
-
-
-## Using Platio Node in OpenBlocks
-
-You cannot use this Platio Node in Node-RED on OpenBlocks because the version of node.js is too old. Please use node-red-contrib-platio-openblocks package on OpenBlocks.

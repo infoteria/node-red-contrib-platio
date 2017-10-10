@@ -1,11 +1,17 @@
-# Node-RED用Platioノード
+Node-RED用Platioノード
+======================
 
 このノードを使用すると、Node-REDから、[Platio](https://plat.io/)のプレート・ミニアプリにレコードを取得・作成・更新・削除することができます。
 
 このノードは、Platio APIを使用してPlatioと通信するため、Platio APIの基本的な動作について知っておく必要があります。Platio APIについては、[Platio APIドキュメント](https://doc.plat.io/ja/)を参照してください。
 
+##### OpenBlocks
 
-## プレートとPlatio APIの準備
+OpenBlocksなどの、古いnode.jsを採用しているプラットフォーム上でNode-RED用Platioノードを使用するには、[node-red-contrib-platio-openblocks](https://github.com/infoteria/node-red-contrib-platio-openblocks)パッケージをご利用ください。
+
+
+プレートとPlatio APIの準備
+--------------------------
 
 1. Platio Studioでプレートを作成します。
 2. プレートのユーザーを作成します。この時、「レコードや添付ファイルへのAPIでのアクセスを許可」にチェックを入れます。
@@ -13,20 +19,21 @@
 4. 開発者ページにアクセスし、必要な情報を確認します。
 
 
-## ノードの共通設定
+ノードの共通設定
+----------------
 
 ### ノードの設定
 
 各ノードには、アクセスするアプリケーションやコレクションなどの情報を、Node-REDのUIから設定することができます。
 
 <dl>
-  <dt>名前 (`name`)</dt>
+  <dt>名前 (<code>name</code>)</dt>
   <dd>ノードの名前。</dd>
-  <dt>アプリケーションID (`applicationId`)</dt>
+  <dt>アプリケーションID (<code>applicationId</code>)</dt>
   <dd>アプリケーション（プレート）のID。</dd>
-  <dt>コレクションID (`collectionId`)</dt>
+  <dt>コレクションID (<code>collectionId</code>)</dt>
   <dd>コレクションのID。</dd>
-  <dt>Authorizationヘッダー (`authorization`)</dt>
+  <dt>Authorizationヘッダー (<code>authorization</code>)</dt>
   <dd>Platio APIの認証用トークンを設定します。上記の開発者ページのAPIトークンの欄でトークンを生成し、表示された「Authorizationヘッダー」の内容をコピーして貼り付けます。</dd>
 </dl>
 
@@ -42,12 +49,15 @@ msg.platio = {
 };
 ```
 
-## エラー処理
+
+エラー処理
+------------
 
 エラーが発生すると、Node-REDにエラーとして通知します。catchノードを使うことで、エラー発生時の処理を行うことができます。
 
 
-## 各ノードについて
+各ノードについて
+----------------
 
 ### platio in
 
@@ -56,20 +66,20 @@ platio inノードを使用すると、指定したレコードを取得した�
 共通の設定に加えて、以下の項目を設定することができます。
 
 <dl>
-  <dt>レコードID (`recordId`)</dt>
+  <dt>レコードID (<code>recordId</code>)</dt>
   <dd>取得するレコードのID。</dd>
-  <dt>取得件数 (`limit`)</dt>
+  <dt>取得件数 (<code>limit</code>)</dt>
   <dd>最大レコード取得数。</dd>
-  <dt>ソートキー (`sortKey`)</dt>
-  <dd>ソートキー。`column`, `createdAt`, `updatedAt`, `createdBy`, `updatedBy`のいずれか。</dd>
-  <dt>ソート順 (`sortOrder`)</dt>
-  <dd>ソート順。`ascending`または`descending`。</dd>
-  <dt>ソートカラムID (`sortColumnId`)</dt>
-  <dd>ソートするカラムのID。ソートキーが`column`の場合のみ指定できます。</dd>
-  <dt>検索式 (`search`)</dt>
-  <dd>レコードの検索条件。詳細は、[レコード検索書式](http://doc.plat.io/api/ja/search.html)を参照してください。</dd>
-  <dt>タイムゾーン (`timezone`)</dt>
-  <dd>検索時に使用されるタイムゾーン。`Asia/Tokyo`など。</dd>
+  <dt>ソートキー (<code>sortKey</code>)</dt>
+  <dd>ソートキー。<code>column</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>createdBy</code>, <code>updatedBy</code>のいずれか。</dd>
+  <dt>ソート順 (<code>sortOrder</code>)</dt>
+  <dd>ソート順。<code>ascending</code>または<code>descending</code>。</dd>
+  <dt>ソートカラムID (<code>sortColumnId</code>)</dt>
+  <dd>ソートするカラムのID。ソートキーが<code>column</code>の場合のみ指定できます。</dd>
+  <dt>検索式 (<code>search</code>)</dt>
+  <dd>レコードの検索条件。詳細は、<a href="http://doc.plat.io/api/ja/search.html">レコード検索書式</a>を参照してください。</dd>
+  <dt>タイムゾーン (<code>timezone</code>)</dt>
+  <dd>検索時に使用されるタイムゾーン。<code>Asia/Tokyo</code>など。</dd>
 </dl>
 
 ノードの設定または処理ごとに設定で、レコードIDを指定した場合、指定されたレコードを取得し、`msg.payload`に設定します。レコードの形式については、[Platio APIドキュメント](https://doc.plat.io/ja/)を参照してください。
@@ -85,10 +95,10 @@ platio outノードを使用すると、レコードを作成したり、既存�
 共通の設定に加えて、以下の項目を設定することができます。
 
 <dl>
-  <dt>レコードID (`recordId`)</dt>
+  <dt>レコードID (<code>recordId</code>)</dt>
   <dd>更新・削除するレコードのID。</dd>
-  <dt>削除 (`delete`)</dt>
-  <dd>指定したレコードを削除する場合には`true`。それ以外の場合には`false`。</dd>
+  <dt>削除 (<code>delete</code>)</dt>
+  <dd>指定したレコードを削除する場合には<code>true</code>。それ以外の場合には<code>false</code>。</dd>
 </dl>
 
 ノードの設定または処理ごとに設定で、レコードIDを指定しなかった場合、`msg.payload`に指定された値でレコードを作成します。
@@ -113,8 +123,3 @@ msg.payload = {
   }
 };
 ```
-
-
-## OpenBlocksでの使用
-
-OpenBlocks上のNode-REDでPlatioノードを使用する場合、使用しているnode.jsのバージョンが古いため、そのままでは使用することができません。OpenBlocks上では、node-red-contrib-platio-openblocksパッケージをご利用ください。

@@ -1,7 +1,11 @@
 {
   "name": "node-red-contrib-platio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infoteria/node-red-contrib-platio.git"
+  },
   "scripts": {
     "lint": "jshint -c ../../.jshintrcServer src/*.js test/*.js && jscs -c ../../.jscsrc src/*.js test/*.js",
     "test": "nyc --reporter html --reporter text mocha test/*.test.js",
