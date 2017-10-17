@@ -56,7 +56,7 @@ class Platio {
     }
 
     getCredential(requestParameters, name, defaultValue) {
-        return _.defaultTo(_.defaultTo(requestParameters[name], this.credentials[name]), defaultValue);
+        return _.defaultTo(_.defaultTo(requestParameters[name], _.get(this.credentials, name)), defaultValue);
     }
 
     _getErrorMessage(body) {
@@ -69,6 +69,37 @@ class Platio {
         else {
             return 'Unknown error';
         }
+    }
+
+    static register(RED, name, clazz) {
+        // With older versions of Node-RED such as 0.13.4,
+        // RED.nodes.registerType replaces the prototype of
+        // the prototype of the constructor.
+        // So its prototype chain becomes Platio(In|Out) -> Node,
+        // instead of Platio(In|Out) -> Platio -> Node.
+        // We'll restore these prototypes here to fix this broken chain.
+        // This will do nothing with the latest Node-RED (0.17.5).
+        function restoringPrototypes(action) {
+            const proto = Object.getPrototypeOf(clazz.prototype);
+
+            action();
+
+            const replacedProto = Object.getPrototypeOf(clazz.prototype);
+            if (replacedProto !== proto) {
+                Object.setPrototypeOf(proto, replacedProto);
+                Object.setPrototypeOf(clazz.prototype, proto);
+            }
+        }
+
+        restoringPrototypes(() => {
+            RED.nodes.registerType(name, clazz, {
+                credentials: {
+                    authorization: {
+                        type: 'password'
+                    }
+                }
+            });
+        });
     }
 }
 

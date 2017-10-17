@@ -94,11 +94,5 @@ module.exports = RED => {
         }
     }
 
-    RED.nodes.registerType('platio in', PlatioIn, {
-        credentials: {
-            authorization: {
-                type: 'password'
-            }
-        }
-    });
+    Platio.register(RED, 'platio in', PlatioIn);
 };

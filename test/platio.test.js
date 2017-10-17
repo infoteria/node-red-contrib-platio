@@ -16,7 +16,8 @@ describe('Platio', () => {
                     node.credentials = {};
                     node.on = sinon.stub();
                     node.error = sinon.stub();
-                }
+                },
+                registerType: sinon.stub()
             }
         };
         request = sinon.stub();
@@ -188,6 +189,12 @@ describe('Platio', () => {
             const platio = new Platio(RED, {});
             platio.getCredential({}, 'authorization', 'default').should.equal('default');
         });
+
+        it('should return a default value if credentials is undefined', () => {
+            const platio = new Platio(RED, {});
+            platio.credentials = undefined;
+            platio.getCredential({}, 'authorization', 'default').should.equal('default');
+        });
     });
 
     describe('_getErrorMessage', () => {
@@ -213,6 +220,38 @@ describe('Platio', () => {
 
         it('should return Unknown error if nil', () => {
             platio._getErrorMessage(undefined).should.equal('Unknown error');
+        });
+    });
+
+    describe('register', () => {
+        it('should call registerType with credentials', () => {
+            class Test {}
+
+            Platio.register(RED, 'test', Test);
+
+            RED.nodes.registerType.should.be.calledWithExactly('test', Test, {
+                credentials: {
+                    authorization: {
+                        type: 'password'
+                    }
+                }
+            });
+        });
+
+        it('should restore prototype chain if it\'s broken', () => {
+            class Base {}
+            class Derived extends Base {}
+            const base = Object.getPrototypeOf(Derived.prototype);
+            class Node {}
+            const node = new Node();
+            RED.nodes.registerType.callsFake((name, constructor, options) => {
+                Object.setPrototypeOf(constructor.prototype, node);
+            });
+
+            Platio.register(RED, 'test', Derived);
+
+            Object.getPrototypeOf(Derived.prototype).should.equal(base);
+            Object.getPrototypeOf(base).should.equal(node);
         });
     });
 });
